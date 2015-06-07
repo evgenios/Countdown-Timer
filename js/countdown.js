@@ -1,7 +1,11 @@
 $(document).ready(function(){
   var running = true;
-  $('#timer').countdown('25', function(event) {
-    $(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
+  var work = true;
+  var timeInSeconds = 1500000;
+  var time = new Date();
+  time.setMinutes(time.getMinutes() + 25);
+  $('#timer').countdown(time, function(event) {
+    $(this).html(event.strftime('%M : %S'));
   });
 
   $('#pause').click(function(event){
@@ -15,7 +19,5 @@ $(document).ready(function(){
       running = true;
     }
     
-
-
   });
 });
