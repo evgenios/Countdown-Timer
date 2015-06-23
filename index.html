@@ -2,22 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" type="text/css" href="css/skeleton.css">
   <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
-  <script type="text/javascript" src="js/countdown.js"></script>
-  
+  <script type="text/javascript" src="js/jquery.the_final_countdown.js"></script>
+
   <title>Countdown Timer</title>
 </head>
+
 <body>
-  <div id="container">
-    <div id="timer"></div>
-    <div id="btns">
-      <button id="pause">Pause</button>
-      <button id="activity">Work</button> 
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <h3>pomodoro timer</h3>
+      </div>
+    </div>
+
+    <div class="row" id="timer_row">
+      <p id="status">WORK</p>
+      <p class="u-full-width" id="timer"></p>
+    </div>
+
+    <div class="row">
+      <div class="six columns">
+        <button class="u-full-width" id="pause">Start</button>
+      </div>
+      <div class="three columns">
+        <button class="u-full-width" id="work">Work</button>
+      </div>
+      <div class="three columns">
+        <button class="u-full-width" id="break">Break</button>
+      </div>
     </div>
   </div>
 </body>
