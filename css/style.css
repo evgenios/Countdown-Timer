@@ -10,3 +10,12 @@
   font-size: 150px;
   text-align: center;
 }
+#status {
+  font-size: 24px;
+}
+body {
+  background: #53b2e5;
+}
+button {
+  border-color: #000;
+}

@@ -3,63 +3,65 @@ $(document).ready(function(){
   var running = false;
   var work = true;
   var workTime = 1500;
-  var breakTime = 5;
+  var breakTime = 600;
   var $pause = $('#pause');
   var $work = $('#work');
   var $break = $('#break');
   var $timer = $('#timer');
+  var $status = $('#status');
 
   createWorkTimer();
 
-  function finishedWork(timer){
-    createBreakTimer();
-  }
-
-  function finishedBreak(timer){
-    createWorkTimer();
-  }
-
-  function basicSetup(){
+  function createWorkTimer() {
+    $status.html('Work');
+    $pause.html('Start Work');
     work = true;
     running = false;
-    $pause.html('Start');
-  }
-
-  function createWorkTimer(){
-    basicSetup();
     $timer.createTimer({
       autostart: false,
       time_in_seconds: workTime,
-      buzzer: finishedBreak
+      buzzer: createBreakTimer
     });
   }
 
-  function createBreakTimer(){
-    basicSetup();
+  function createBreakTimer() {
+    $status.html('Break');
+    $pause.html('Start Break');
+    work = false;
+    running = false;
     $timer.createTimer({
       autostart: false,
       time_in_seconds: breakTime,
-      buzzer: finishedWork
+      buzzer: createWorkTimer
     });
   }
 
-  $pause.on('click',function(){
+  $pause.on('click',function() {
     if(running === true) {
       running = false;
-      $pause.html('Continue');
       $timer.pauseTimer();
+      if(work){
+        $pause.html('Continue Work'); 
+      } else {
+        $pause.html('Continue Break'); 
+      }
     } else {
       running = true;
       $pause.html('Pause');
-      $timer.startTimer();
+
+      if(work) {
+        $timer.startTimer({buzzer:createBreakTimer});
+      } else {
+        $timer.startTimer({buzzer:createWorkTimer});
+      }
     }
   });
 
-  $break.on('click',function(){
+  $break.on('click',function() {
     createBreakTimer();
   });
 
-  $work.on('click',function(){
+  $work.on('click',function() {
     createWorkTimer();
   });
 
