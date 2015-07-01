@@ -13,7 +13,8 @@ $(document).ready(function(){
   createWorkTimer();
 
   function createWorkTimer() {
-    $status.html('Work');
+    $('body').removeClass('break');
+    $status.html('Doing work');
     $pause.html('Start Work');
     work = true;
     running = false;
@@ -25,7 +26,8 @@ $(document).ready(function(){
   }
 
   function createBreakTimer() {
-    $status.html('Break');
+    $('body').addClass('break');
+    $status.html('On a break');
     $pause.html('Start Break');
     work = false;
     running = false;
