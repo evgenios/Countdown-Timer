@@ -42,6 +42,7 @@ $(document).ready(function(){
     if(running === true) {
       running = false;
       $timer.pauseTimer();
+      $status.html('Paused');
       if(work){
         $pause.html('Continue Work'); 
       } else {
@@ -52,8 +53,10 @@ $(document).ready(function(){
       $pause.html('Pause');
 
       if(work) {
+        $status.html('Doing work');
         $timer.startTimer({buzzer:createBreakTimer});
       } else {
+        $status.html('On a break');
         $timer.startTimer({buzzer:createWorkTimer});
       }
     }
