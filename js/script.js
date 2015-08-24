@@ -1,5 +1,4 @@
-$(document).ready(function(){
-
+$(document).ready(function() {
   var running = false;
   var work = true;
   var workTime = 1500;
@@ -10,10 +9,8 @@ $(document).ready(function(){
   var $timer = $('#timer');
   var $status = $('#status');
 
-  createWorkTimer();
-
   function createWorkTimer() {
-    $('html').removeClass('break');
+    $('body').removeClass('break');
     $status.html('Doing work');
     $pause.html('Start Work');
     work = true;
@@ -21,12 +18,12 @@ $(document).ready(function(){
     $timer.createTimer({
       autostart: false,
       time_in_seconds: workTime,
-      buzzer: createBreakTimer
+      buzzer: createBreakTimer,
     });
   }
 
   function createBreakTimer() {
-    $('html').addClass('break');
+    $('body').addClass('break');
     $status.html('On a break');
     $pause.html('Start Break');
     work = false;
@@ -34,40 +31,41 @@ $(document).ready(function(){
     $timer.createTimer({
       autostart: false,
       time_in_seconds: breakTime,
-      buzzer: createWorkTimer
+      buzzer: createWorkTimer,
     });
   }
 
-  $pause.on('click',function() {
-    if(running === true) {
+  $pause.on('click', function() {
+    if (running === true) {
       running = false;
       $timer.pauseTimer();
       $status.html('Paused');
-      if(work){
-        $pause.html('Continue Work'); 
+      if (work) {
+        $pause.html('Continue Work');
       } else {
-        $pause.html('Continue Break'); 
+        $pause.html('Continue Break');
       }
     } else {
       running = true;
       $pause.html('Pause');
 
-      if(work) {
+      if (work) {
         $status.html('Doing work');
-        $timer.startTimer({buzzer:createBreakTimer});
+        $timer.startTimer({buzzer: createBreakTimer});
       } else {
         $status.html('On a break');
-        $timer.startTimer({buzzer:createWorkTimer});
+        $timer.startTimer({buzzer: createWorkTimer});
       }
     }
   });
 
-  $break.on('click',function() {
+  $break.on('click', function() {
     createBreakTimer();
   });
 
-  $work.on('click',function() {
+  $work.on('click', function() {
     createWorkTimer();
   });
 
+  createWorkTimer();
 });
